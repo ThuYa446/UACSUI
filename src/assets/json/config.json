@@ -1,0 +1,14 @@
+{
+"app" : "UAC System",
+"appname" : "User Access Control System",
+"version" : "1.0",
+"title" : "UAC System",
+"domain" : "UAC Service",
+"apiurl" : "http://localhost:8080/UACService/module001/",
+"rpturl" : "http://localhost:8080/UACService/reportapi/",
+"sessiontime": 1, 
+"loginLogo":"assets/images/logo.png",
+"bgImage" : "assets/images/background.png",
+"welcomeText" 	: "Welcome To User Access Control System"
+}
+

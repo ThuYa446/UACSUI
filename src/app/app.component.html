@@ -1,0 +1,49 @@
+<div (keyup)="docChanges('keyup')" (keydown)="docChanges('keydown')" (click)="docChanges('click')" (DOMMouseScroll)="docChanges('DOMMouseScroll')"
+  (mousewheel)="docChanges('mousewheel')" (mousedown)="docChanges('mousedown')" (touchstart)="docChanges('touchstart')" (touchmove)="docChanges('touchmove')"
+  (scroll)="docChanges('scroll')" (focus)="docChanges('focus')">
+
+  <!-- The Modal -->
+  <div class="modal fade" id="customMsgPopup">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header" [class.bg-info]='customMessage.type==="Information"'
+                                  [class.bg-danger]='customMessage.type==="Error"'
+                                  [class.bg-warning]='customMessage.type==="Warning"'
+                                  [class.bg-success]='customMessage.type==="Success"'>
+
+          <h4 class="modal-title  text-white">{{customMessage.type}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+         {{ customMessage.msg}}
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+    <!-- Loader -->
+    <div class="modal fade" id="loading" role="dialog">
+      <div style="margin-left:45%">
+      <div class="loader text-primary " role="status" >
+      </div>
+    </div>
+  <app-login></app-login>
+
+</div>
+
+
+
+
+
+

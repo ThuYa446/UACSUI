@@ -1,0 +1,60 @@
+<div class="container mt-5" >
+  <div class="row justify-content-md-center">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+      <div class="card">
+        <div class="card-header" style="text-align: center;" [class] = "darkmode == false? 'card-header bg-primary':'card-header bg-secondary text-white'">Company Name Here</div>
+        <div class="card-body" [class] = "darkmode == false? 'card-body':'card-body bg-secondary text-white'">
+          <div class="row justify-content-md-center">
+            <div class="col-md-12">
+              <img [src]=logo class="mx-auto d-block" style="width: 100px;height: 100px;">
+              <form class="col-md-12">
+                <div class="input-group mb-3 mt-3 input-group-sm">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-user" aria-hidden="true"></i></button>
+                  </div>
+                  <input type="text" class="form-control" placeholder="UserName" aria-label="" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3 mt-3 input-group-sm">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-lock" aria-hidden="true"></i></button>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Passward" aria-label="" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="row justify-content-sm-center">
+                  <div class="custom-control  custom-radio custom-control-inline col-md-auto ">
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx">
+                    <label class="custom-control-label" for="customRadio">Myanmar</label>
+                  </div>
+
+                  <div class="custom-control custom-radio custom-control-inline col-md-auto ">
+                    <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
+                    <label class="custom-control-label" for="customRadio2">English</label>
+                  </div>
+
+                  <div class="custom-control custom-switch col-md-auto" >
+                    <input type="checkbox" class="custom-control-input" id="switch1" (change)=onchangeEvent($event) (ngModelChange) = $event>
+                    <label class="custom-control-label" for="switch1">DarkMode</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer" [class] = "darkmode == false? 'card-footer':'card-footer bg-secondary'">
+          <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+              <button type="button" class="btn btn-primary text-white"  (click)="goPost()">SignIn</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
