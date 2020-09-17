@@ -1,4 +1,4 @@
-import { Component, OnInit, enableProdMode } from '@angular/core';
+import { Component, OnInit, enableProdMode, HostListener } from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import { IntercomService } from './Services/intercom.service';
@@ -6,7 +6,8 @@ import { HttpClientService} from './Services/httpClient.service';
 import { timer } from 'rxjs';
 // import * as $ from 'jquery';
 
-declare var jQuery: any;
+// declare var jQuery: any;
+declare var $: any;
 enableProdMode();
 @Component({
   selector: 'app-root',
@@ -14,26 +15,31 @@ enableProdMode();
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  mflag = true;
   customMessage = {flag: true, msg: 'Hello', type: 'Success'};
 
   // tslint:disable-next-line: max-line-length
   constructor(private ics: IntercomService, private http: HttpClientService, private title: Title, private router: Router) {
     this.ics.rpbean$.subscribe(
       x => {
-          if (x.t1 != null && x.t1 === 'custom-loading') {
-            jQuery('#loading').modal();
-          }
           if (x.t1 != null && x.t1 === 'custom-loading-off') {
-            jQuery('#loading').modal('hide');
+            this.mflag = true;
+            $('#loading').modal('hide');
           }
+
+          if (x.t1 != null && x.t1 === 'custom-loading') {
+            this.mflag = false;
+            $('#loading').modal({backdrop: 'static'});
+          }
+
           if ( x.t1 != null && x.t1 === 'custom-msg') {
             this.customMessage = { flag : false, msg: x.t2, type: x.t3 };
-            jQuery('#customMsgPopup').modal({show: true});
+            $('#customMsgPopup').modal({show: true});
           }
           if (x.t1 != null && x.t1 === 'custom-msg-off') {
-            this.customMessage = {flag: true , msg: '' , type : ''};
-            jQuery('#customMsgPopup').modal({show: false});
+            this.customMessage = {flag: false , msg: '' , type : ''};
+           // $('.modal-backdrop').remove();
+            $('#customMsgPopup').modal('hide');
           }
       }
     );
@@ -73,9 +79,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.showCustomMsg( 'Hello World, This is the Custom Modal', null);
-    // this.showloading(false);
     setInterval(() => {this.checkAtive(); }, 10000 );
+    this.router.navigate(['/logIn']);
   }
 
   docChanges(event) {
@@ -99,6 +104,7 @@ export class AppComponent implements OnInit {
           const url: string = this.ics.apiurl + 'service001/signout?sessionID=' + this.ics.profile.sessionID;
           const json: any = this.ics.profile.userid;
           console.log('Entering SignOut ...');
+          this.router.navigate(['/logIn']);
           // this.http.doPost(url, json).subscribe(
           //   data => {
           //     if (data.state) {
@@ -115,6 +121,9 @@ export class AppComponent implements OnInit {
         }
       );
     }
+  }
 
+  @HostListener('window:unload', ['$event'])
+  unloadHandler(event) {
   }
 }

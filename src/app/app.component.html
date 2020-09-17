@@ -2,6 +2,16 @@
   (mousewheel)="docChanges('mousewheel')" (mousedown)="docChanges('mousedown')" (touchstart)="docChanges('touchstart')" (touchmove)="docChanges('touchmove')"
   (scroll)="docChanges('scroll')" (focus)="docChanges('focus')">
 
+
+
+
+  <router-outlet></router-outlet>
+  <!-- Loader -->
+
+    <div [hidden]='mflag' class='modal' id="loading">
+        <div class="loader"></div>
+    </div>
+
   <!-- The Modal -->
   <div class="modal fade" id="customMsgPopup">
     <div class="modal-dialog">
@@ -30,15 +40,6 @@
       </div>
     </div>
   </div>
-
-  <router-outlet></router-outlet>
-    <!-- Loader -->
-    <div class="modal fade" id="loading" role="dialog">
-      <div style="margin-left:45%">
-      <div class="loader text-primary " role="status" >
-      </div>
-    </div>
-  <app-login></app-login>
 
 </div>
 

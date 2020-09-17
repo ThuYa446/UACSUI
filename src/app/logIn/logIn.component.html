@@ -1,39 +1,40 @@
 <div class="container mt-5" >
-  <div class="row justify-content-md-center">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 ">
       <div class="card">
-        <div class="card-header" style="text-align: center;" [class] = "darkmode == false? 'card-header bg-primary':'card-header bg-secondary text-white'">Company Name Here</div>
+        <div class="card-header" style="text-align: center;" [class] = "darkmode == false? 'card-header bg-primary text-white':'card-header bg-secondary text-white'">ABC Co.Ltd</div>
         <div class="card-body" [class] = "darkmode == false? 'card-body':'card-body bg-secondary text-white'">
           <div class="row justify-content-md-center">
             <div class="col-md-12">
               <img [src]=logo class="mx-auto d-block" style="width: 100px;height: 100px;">
               <form class="col-md-12">
-                <div class="input-group mb-3 mt-3 input-group-sm">
+                <div class="input-group mb-3 mt-3 input-group-sm justify-content-center">
                   <div class="input-group-prepend">
-                    <button class="btn btn-primary" type="button"><i class="fa fa-user" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" type="button" disabled><i class="fa fa-user" aria-hidden="true"></i></button>
                   </div>
-                  <input type="text" class="form-control" placeholder="UserName" aria-label="" aria-describedby="basic-addon1">
+                  <input type="text" class="form-control col-md-6" placeholder="UserName" aria-label="" aria-describedby="basic-addon1" [(ngModel)]="obj.userId" [ngModelOptions]="{standalone:true}">
                 </div>
 
-                <div class="input-group mb-3 mt-3 input-group-sm">
+                <div class="input-group mb-3 mt-3 input-group-sm justify-content-center">
                   <div class="input-group-prepend">
-                    <button class="btn btn-primary" type="button"><i class="fa fa-lock" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" type="button" disabled><i class="fa fa-lock" aria-hidden="true"></i></button>
                   </div>
-                  <input type="password" class="form-control" placeholder="Passward" aria-label="" aria-describedby="basic-addon1">
+                  <input type="password" class="form-control col-md-6" placeholder="Passward" aria-label="" aria-describedby="basic-addon1" [(ngModel)]="obj.phNo" [ngModelOptions]="{standalone:true}">
                 </div>
 
-                <div class="row justify-content-sm-center">
-                  <div class="custom-control  custom-radio custom-control-inline col-md-auto ">
+                <div class="row justify-content-center">
+
+                  <div class="custom-control  custom-radio custom-control-inline col-md-auto col-auto">
                     <input type="radio" class="custom-control-input" id="customRadio" name="example" value="customEx">
                     <label class="custom-control-label" for="customRadio">Myanmar</label>
                   </div>
 
-                  <div class="custom-control custom-radio custom-control-inline col-md-auto ">
+                  <div class="custom-control custom-radio custom-control-inline col-auto">
                     <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="customEx">
                     <label class="custom-control-label" for="customRadio2">English</label>
                   </div>
 
-                  <div class="custom-control custom-switch col-md-auto" >
+                  <div class="custom-control custom-switch col-auto">
                     <input type="checkbox" class="custom-control-input" id="switch1" (change)=onchangeEvent($event) (ngModelChange) = $event>
                     <label class="custom-control-label" for="switch1">DarkMode</label>
                   </div>
@@ -43,9 +44,9 @@
           </div>
         </div>
         <div class="card-footer" [class] = "darkmode == false? 'card-footer':'card-footer bg-secondary'">
-          <div class="row justify-content-md-center">
-            <div class="col-md-auto">
-              <button type="button" class="btn btn-primary text-white"  (click)="goPost()">SignIn</button>
+          <div class="row justify-content-end">
+            <div class="col-auto">
+              <button type="button" class="btn btn-primary text-white"  (click)="sayHello()">SignIn</button>
             </div>
           </div>
         </div>

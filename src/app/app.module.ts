@@ -11,11 +11,10 @@ import { LogInComponent } from './logIn/logIn.component';
 import { HttpClientService} from './Services/httpClient.service';
 import {IntercomService} from './Services/intercom.service';
 
-
 @NgModule({
    declarations: [
       AppComponent,
-      LogInComponent
+      LogInComponent,
    ],
    imports: [
       BrowserModule,
