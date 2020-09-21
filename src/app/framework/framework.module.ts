@@ -1,3 +1,4 @@
+import { UserComponent } from './user/user/user.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,10 +8,12 @@ import { MenubarComponent } from '../Framework/menubar.component';
 import { FrameworkRoutingModule } from '../Framework/framework-routing.module';
 
 import {IntercomService} from '../Services/intercom.service';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
-    MenubarComponent
+    MenubarComponent,
+    UserComponent
   ],
   imports: [
      BrowserModule,
@@ -19,7 +22,8 @@ import {IntercomService} from '../Services/intercom.service';
      NgbModule
   ],
   exports: [
-    MenubarComponent
+    MenubarComponent,
+    UserComponent
   ],
   providers: [
     IntercomService,

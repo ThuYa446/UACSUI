@@ -15,32 +15,39 @@ export class HttpClientService {
 constructor(private httpClient: HttpClient, private message: MessageService) { }
 
   private log(message: string) {
-    this.message.addMessage(`HeroService: ${message}`);
+    this.message.addMessage(`ErrorService: ${message}`);
   }
 
   doGet(url: string): Observable<any> {
     return this.httpClient.get(`${url}`).pipe(
-      tap(_ => this.log('Http Requested Successfully!')),
-      catchError(this.handleError<any>('Error While Requesting Get'))
+      // tap(_ => this.log('Http Requested Successfully!')),
+      catchError(this.handleError<any>())
     );
   }
 
   doPost(url: string, json: JSON): Observable<any> {
     return this.httpClient.post(url, json, this.httpOptions).pipe(
-      tap(_ => this.log('Http Requested Successfully!')),
-      catchError(this.handleError<any>('Error While Requesting Post'))
+      // tap(_ => this.log('Http Requested Successfully!')),
+      catchError(this.handleError<any>())
     );
+  }
+
+  checkServerErrorConnection(): boolean {
+    if (this.message.message.length === 1 ) {
+      return true;
+    }
+    return false;
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      // console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
+      // this.log(`${operation} failed: ${error.message}`);
+      this.log('Can not connect to Server');
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };

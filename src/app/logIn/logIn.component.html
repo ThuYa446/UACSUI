@@ -6,7 +6,7 @@
         <div class="card-body" [class] = "darkmode == false? 'card-body':'card-body bg-secondary text-white'">
           <div class="row justify-content-md-center">
             <div class="col-md-12">
-              <img [src]=logo class="mx-auto d-block" style="width: 100px;height: 100px;">
+              <img [src]=logo class="border mx-auto d-block" style="width: 100px;height: 100px;">
               <form class="col-md-12">
                 <div class="input-group mb-3 mt-3 input-group-sm justify-content-center">
                   <div class="input-group-prepend">
@@ -19,7 +19,7 @@
                   <div class="input-group-prepend">
                     <button class="btn btn-primary" type="button" disabled><i class="fa fa-lock" aria-hidden="true"></i></button>
                   </div>
-                  <input type="password" class="form-control col-md-6" placeholder="Passward" aria-label="" aria-describedby="basic-addon1" [(ngModel)]="obj.phNo" [ngModelOptions]="{standalone:true}">
+                  <input type="password" class="form-control col-md-6" placeholder="Passward" aria-label="" aria-describedby="basic-addon1" [(ngModel)]="obj.phNo" [ngModelOptions]="{standalone:true}"  (keyup.enter)="sayHello()">
                 </div>
 
                 <div class="row justify-content-center">
@@ -46,7 +46,7 @@
         <div class="card-footer" [class] = "darkmode == false? 'card-footer':'card-footer bg-secondary'">
           <div class="row justify-content-end">
             <div class="col-auto">
-              <button type="button" class="btn btn-primary text-white"  (click)="sayHello()">SignIn</button>
+              <button type="button" class="btn btn-primary text-white" (click)="sayHello()">SignIn</button>
             </div>
           </div>
         </div>

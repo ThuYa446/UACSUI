@@ -1,3 +1,4 @@
+import { MessageService } from './../Services/message.service';
 import { Component, OnInit, OnDestroy, enableProdMode } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClientService} from '../Services/httpClient.service';
@@ -19,7 +20,7 @@ export class LogInComponent implements OnInit, OnDestroy {
   subscribe: Subscription;
   obj: any = this.getDefaultObj();
 
-  constructor(private ics: IntercomService, private http: HttpClientService, private route: Router) {
+  constructor(private ics: IntercomService, private http: HttpClientService, private route: Router, private msg: MessageService) {
     this.subscribe = ics.rpbean$.subscribe( x => { });
     // this.ics.sendBean(new RpBean());
     this.logo = this.ics.loginLogo;
@@ -73,31 +74,34 @@ export class LogInComponent implements OnInit, OnDestroy {
     const json: any = this.obj;
     // this.showloading(false);
    // this.showCustomMsg('Please wait....', true);
-    this.showloading(true);
-    timer(3000).subscribe(
-      val => {
-    // this.offCustomMsg(true);
-    this.http.doPost(url, json).subscribe(
-        data => {
-          if (data.msgCode === '0000') {
-            this.showloading(false);
-            this.obj = data ;
-            // JSON.parse(this.obj);
-            // console.log(this.obj.userId);
-            // tslint:disable-next-line: max-line-length
-            this.showCustomMsg(data.msgDesc + '/' + 'UserName: ' + JSON.stringify(this.obj.userId ) + '/' + 'Password: ' + this.obj.phNo, undefined);
-            // this.showCustomMsg('UserName: ' + data.userId, true);
-            // this.showCustomMsg('Password: ' + data.phNo, true);
-            // this.offCustomMsg(true);
-            this.route.navigate(['/menubar']);
-          }
-        },
-        error => {
-          console.log(error.type);
-        }
-    );
-    }
-    );
+  //  this.showloading(true);
+    // timer(0).subscribe(
+    //   val => {
+    // // this.offCustomMsg(true);
+    // this.http.doPost (url, json).subscribe(
+    //     data => {
+    //       if (this.http.checkServerErrorConnection()) {
+    //         this.showloading(false);
+    //         this.showCustomMsg(this.msg.message[0], false);
+    //         this.msg.clear();
+    //       } else {
+    //         if (data.msgCode === '0000') {
+    //           this.showloading(false);
+    //           this.obj = data ;
+    //           // tslint:disable-next-line: max-line-length
+    // tslint:disable-next-line: max-line-length
+    //           this.showCustomMsg(data.msgDesc + '/' + 'UserName: ' + this.obj.userId + '/' + 'Password: ' + this.obj.phNo + '/' + 'Syskey: ' + this.obj.keyResult, undefined);
+    //           // this.showCustomMsg('UserName: ' + data.userId, true);
+    //           // this.showCustomMsg('Password: ' + data.phNo, true);
+    //           // this.offCustomMsg(true);
+    //           this.route.navigate(['/menubar']);
+    //         }
+    //       }
+    //     },
+    // );
+    // }
+    // );
+    this.route.navigate(['/user']);
   }
 
   ngOnDestroy() {
