@@ -1,5 +1,5 @@
-<div class="container bg-white">
-    <fieldset>
+<div class="container-fluid bg-white">
+    <fieldset [class]="darkmode === false? 'bgNormal':'bg-secondary'">
       <legend>User Registration</legend>
       <form class="form-group row">
         <!-- ္First Column Form-->
@@ -27,6 +27,15 @@
             </div>
             <input type="text" class="form-control" id="" placeholder="Username">
           </div>
+          <label for="dob">Date of Birth:</label>
+          <div class="input-group input-group-sm">
+
+            <input class="form-control" placeholder="dd-mm-yyyy" name="d2" #c2="ngModel" [(ngModel)]="date" ngbDatepicker #d2="ngbDatepicker" [minDate]="{year: 1800, month: 1, day: 1}"
+             [maxDate]="{year: 2300, month: 12, day: 31}" readonly>
+            <div class="input-group-append">
+              <button class="btn btn-primary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
+            </div>
+          </div>
         </div>
          <!-- Second Column Form-->
         <div class="col-md-6">
@@ -35,7 +44,7 @@
             <div class="input-group-prepend">
               <button class="btn btn-primary" type="button" disabled><i class="fa fa-user" aria-hidden="true"></i></button>
             </div>
-            <input type="text" class="form-control" id="" placeholder="Username">
+            <input type="date" class="form-control" id="" onchange="pickaDate($event)">
           </div>
         </div>
       </form>
