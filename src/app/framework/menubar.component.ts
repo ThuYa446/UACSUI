@@ -52,7 +52,7 @@ export class MenubarComponent implements OnInit {
 
   }
 
-  goSignOut(){
+  goSignOut() {
     this.router.navigate(['/logIn']);
   }
 

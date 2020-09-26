@@ -3,14 +3,42 @@ import { Component, OnInit, OnDestroy, enableProdMode } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClientService} from '../Services/httpClient.service';
 import { IntercomService} from '../Services/intercom.service';
-import { Route } from '@angular/compiler/src/core';
 import { timer, Subscription } from 'rxjs';
+import {trigger, state, style, animate, transition, keyframes} from '@angular/animations';
+import { slideInAnimation } from '../animation/animation';
 declare var jQuery: any;
 enableProdMode();
 @Component({
   selector: 'app-login',
   templateUrl: './logIn.component.html',
-  styleUrls: ['./logIn.component.css']
+  styleUrls: ['./logIn.component.css'],
+  animations: [
+    slideInAnimation,
+    trigger( 'animator',
+    [
+      state('animateOn', style({
+        // backgroundColor: 'grey',
+        opacity: 0.5,
+        borderRadius: '10px',
+      })),
+      state('animateOff', style({
+        // backgroundColor: 'white',
+        opacity: 1,
+        borderRadius: '50px',
+      })),
+     transition('animateOn <=> animateOff', [animate('1s 0.5s ease')]),
+      // transition('* => animateOff', [animate('5s', keyframes([
+      //   style({backgroundColor: 'green', offset: 0, opacity: 0.1}),
+      //   style({backgroundColor: 'yellow', offset: 0.3 }),
+      //   style({backgroundColor: 'grey', offset: 1 }),
+      // ]))]),
+      // transition('* => animateOn', [animate('5s', keyframes([
+      //   style({backgroundColor: 'grey', offset: 0}),
+      //   style({backgroundColor: 'yellow', offset: 0.8 }),
+      //   style({backgroundColor: 'green', offset: 1 }),
+      // ]))])
+    ]),
+  ],
 })
 export class LogInComponent implements OnInit, OnDestroy {
 

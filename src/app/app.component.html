@@ -1,16 +1,14 @@
 <div (keyup)="docChanges('keyup')" (keydown)="docChanges('keydown')" (click)="docChanges('click')" (DOMMouseScroll)="docChanges('DOMMouseScroll')"
   (mousewheel)="docChanges('mousewheel')" (mousedown)="docChanges('mousedown')" (touchstart)="docChanges('touchstart')" (touchmove)="docChanges('touchmove')"
   (scroll)="docChanges('scroll')" (focus)="docChanges('focus')">
-
-
-
-
-  <router-outlet></router-outlet>
   <!-- Loader -->
 
     <div class='modal' [hidden]='mflag' id="loading">
         <div class="loader"></div>
     </div>
+    <main [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet=outlet></router-outlet>
+    </main>
 
   <!-- The Modal -->
   <div class="modal fade" id="customMsgPopup">
@@ -42,9 +40,3 @@
   </div>
 
 </div>
-
-
-
-
-
-

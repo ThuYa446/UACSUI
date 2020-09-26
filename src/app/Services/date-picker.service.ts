@@ -30,6 +30,12 @@ export class DatePickerService extends NgbDateParserFormatter {
     return new Date(Number(Date.parse(dob)));
   }
 
+  calulateAge(dob: Date | null): number {
+    const diffms = Date.now() - dob.getTime();
+    const agedt = new Date(diffms);
+    return Math.abs(agedt.getUTCFullYear() - 1970);
+  }
+
   format(date: NgbDateStruct | null): string {
     return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
   }

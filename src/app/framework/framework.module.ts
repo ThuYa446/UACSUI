@@ -1,5 +1,7 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { DatePickerService } from './../Services/date-picker.service';
-import { UserComponent } from './user/user/user.component';
+import { UserComponent } from './user/user.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -18,9 +20,12 @@ import { from } from 'rxjs';
   ],
   imports: [
      BrowserModule,
+     BrowserAnimationsModule,
+     RouterModule,
      FrameworkRoutingModule,
      FormsModule,
-     NgbModule
+     NgbModule,
+
   ],
   exports: [
     MenubarComponent,

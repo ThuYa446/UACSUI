@@ -1,9 +1,10 @@
 import { Component, OnInit, enableProdMode, HostListener } from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {Router} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import { IntercomService } from './Services/intercom.service';
 import { HttpClientService} from './Services/httpClient.service';
 import { timer } from 'rxjs';
+import { slideInAnimation } from './animation/animation';
 // import * as $ from 'jquery';
 
 // declare var jQuery: any;
@@ -12,7 +13,10 @@ enableProdMode();
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+    slideInAnimation,
+  ]
 })
 export class AppComponent implements OnInit {
   mflag = true;
@@ -45,6 +49,11 @@ export class AppComponent implements OnInit {
     );
     this.init();
   }
+    // For animation Routing
+    prepareRoute(outlet: RouterOutlet) {
+      // tslint:disable-next-line: no-string-literal
+      return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    }
 
   showCustomMsg(msg, type) {
     if ( type === true) {this.ics.sendBean({t1: 'custom-msg', t2: msg, t3: 'Information' }); }

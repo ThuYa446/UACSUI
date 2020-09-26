@@ -1,5 +1,5 @@
 <div class="container-fluid bg-white">
-    <fieldset [class]="darkmode === false? 'bgNormal':'bg-secondary'">
+    <fieldset [class]="darkmode === false? 'mb-3 bgNormal':' mb-3 bg-secondary'">
       <legend>User Registration</legend>
       <form class="form-group row">
         <!-- ္First Column Form-->
@@ -29,11 +29,17 @@
           </div>
           <label for="dob">Date of Birth:</label>
           <div class="input-group input-group-sm">
-
-            <input class="form-control" placeholder="dd-mm-yyyy" name="d2" #c2="ngModel" [(ngModel)]="date" ngbDatepicker #d2="ngbDatepicker" [minDate]="{year: 1800, month: 1, day: 1}"
-             [maxDate]="{year: 2300, month: 12, day: 31}" readonly>
+            <input type="text" class="form-control" placeholder="dd-mm-yyyy" name="d2" #c2="ngModel" [(ngModel)]="date" click="calculateAge()" ngbDatepicker #d2="ngbDatepicker" [minDate]="{year: 1800, month: 1, day: 1}"
+             [maxDate]="{year: 2300, month: 12, day: 31}" readonly >
             <div class="input-group-append">
-              <button class="btn btn-primary fa fa-calendar" (click)="d2.toggle()" type="button"></button>
+              <button class="btn btn-primary fa fa-calendar" (click)="d2.toggle()" type="button" ></button>
+            </div>
+          </div>
+          <label for="dob">Age:</label>
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" id="" placeholder="Age" readonly [(ngModel)]="age" [ngModelOptions]="{standalone: true}">
+            <div class="input-group-append">
+              <button class="btn btn-primary" (click)="calculateAge()" type="button" >Calculate Age</button>
             </div>
           </div>
         </div>

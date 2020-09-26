@@ -5,12 +5,13 @@ import { LogInComponent } from './logIn/logIn.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/user',
-    pathMatch: 'full'   // This is the Default Route When browser Start
+    redirectTo: '/',
+    pathMatch: 'full',   // This is the Default Route When browser Start
   },
   {
     path: 'logIn',
-    component: LogInComponent
+    component: LogInComponent,
+    data: {animation: 'LogInAnimation'}
   },
 
 ];
