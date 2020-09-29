@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Pyidaungsu';
+  font-style: normal;
+  font-weight: 400;
+  font-size: xx-small;
+  src: local('Pyidaungsu Regular'), local('Pyidaungsu-Regular'),
+       url('../assets/fonts/Pyidaungsu.eot') format('embedded-opentype'), /* IE6-IE8 */
+       url('../assets/fonts/Pyidaungsu.woff') format('woff'), /* Modern Browsers */
+       url('../assets/fonts/Pyidaungsu.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../assets/fonts/Pyidaungsu.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../assets/fonts/Pyidaungsu.svg') format('svg'); /* Legacy iOS */
+}

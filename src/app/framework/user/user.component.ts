@@ -4,6 +4,7 @@ import { MessageService } from './../../Services/message.service';
 import { IntercomService } from './../../Services/intercom.service';
 import { Router } from '@angular/router';
 import { slideInAnimation } from 'src/app/animation/animation';
+import { HttpClientService } from 'src/app/Services/httpClient.service';
 declare var $: any;
 enableProdMode();
 @Component({
@@ -20,15 +21,30 @@ export class UserComponent implements OnInit {
   image:string;
   _uploadFileName:string;
   darkmode = this.ics.profile.darkMode;
+  languageObj: any;
+  selectedLanguage: any [];
   date: string;
   dateFmt:Date;
   age:number;
-  constructor(private ics: IntercomService, private router: Router, private datepicker:DatePickerService) {
+  constructor(private ics: IntercomService,private http: HttpClientService, private router: Router, private datepicker:DatePickerService) {
 
   }
 
-  ngOnInit() {
+  init(): void{
+    this.http.doGet('assets/json/language.json').subscribe(
+      data => {
+        this.languageObj = data;
+        if(this.ics.isMyanmar()){
+          this.selectedLanguage = this.languageObj.Myanmar;
+        }else{
+          this.selectedLanguage = this.languageObj.English;
+        }
+      }
+    );
+  }
 
+  ngOnInit() {
+    this.init();
   }
 
   pickaDate(){
@@ -36,9 +52,7 @@ export class UserComponent implements OnInit {
   }
 
   fileChangeEvent(event,input){
-    this.dateFmt = this.datepicker.changeStringToDate(this.date);
-    this.age = this.datepicker.calulateAge(this.dateFmt);
-    console.log( this.age);
+    
   }
 
   calculateAge(){

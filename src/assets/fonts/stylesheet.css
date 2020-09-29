@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Pyidaungsu';
+    src: url('Pyidaungsu.eot');
+    src: url('Pyidaungsu.eot?#iefix') format('embedded-opentype'),
+        url('Pyidaungsu.woff2') format('woff2'),
+        url('Pyidaungsu.woff') format('woff'),
+        url('Pyidaungsu.ttf') format('truetype'),
+        url('Pyidaungsu.svg#Pyidaungsu') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pyidaungsu';
+    src: url('Pyidaungsu-Bold.eot');
+    src: url('Pyidaungsu-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Pyidaungsu-Bold.woff2') format('woff2'),
+        url('Pyidaungsu-Bold.woff') format('woff'),
+        url('Pyidaungsu-Bold.ttf') format('truetype'),
+        url('Pyidaungsu-Bold.svg#Pyidaungsu-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

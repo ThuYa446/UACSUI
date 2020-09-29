@@ -17,7 +17,7 @@ export class IntercomService {
   loginLogo = 'assets/images/logo.png';
   bgImage = 'assets/images/background.png';
   activeTimeout = 0;
-
+  languagemode = 0;
   profile = {
     sessionID: '0',
     userid: '',
@@ -70,4 +70,18 @@ export class IntercomService {
   enabledDarkMode(): void {
     this.profile.darkMode = true;
   }
+
+  setMyanmar(): number{
+    return this.languagemode = 0;
+  }
+
+  setEnglish(): number {
+    return this.languagemode = 1;
+  }
+
+  isMyanmar(): boolean {
+   return this.languagemode === 0;
+  }
+
+
 }

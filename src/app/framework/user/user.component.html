@@ -1,20 +1,20 @@
 <div class="container-fluid bg-white">
     <fieldset [class]="darkmode === false? 'mb-3 bgNormal':' mb-3 bg-secondary'">
-      <legend>User Registration</legend>
+      <legend>{{selectedLanguage[7]}}</legend>
       <form class="form-group row">
         <!-- ္First Column Form-->
         <div class="col-md-6">
           <div class="row justify-content-center mb-2">
             <img [src]="image ? image: errorImage" class="mx-auto d-block" alt="Responsive image" width="150px" height="150px">
           </div>
-          <label for="username">Upload Profile Photo</label>
+          <label for="username">{{selectedLanguage[8]}}</label>
           <div class="input-group input-group-sm">
             <div class="input-group-prepend">
               <button class="btn btn-primary" type="button" disabled><i class="fa fa-folder-open" aria-hidden="true"></i></button>
             </div>
             <input class="form-control" type="text" [(ngModel)]="_uploadFileName" required readonly [ngModelOptions]="{standalone: true}">
               <div class="input-group-prepend">
-                <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Upload
+                <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">{{selectedLanguage[9]}}
                   <span> <i class="fa fa-folder-open" aria-hidden="true"></i></span>
                 </span>
                 <input id="inputfile" type="file" accept=".jpg,.png" (change)="fileChangeEvent($event,input)" style="display: none;" #input>

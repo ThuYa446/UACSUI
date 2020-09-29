@@ -47,12 +47,36 @@ export class LogInComponent implements OnInit, OnDestroy {
   $event: any;
   subscribe: Subscription;
   obj: any = this.getDefaultObj();
-
+  fieldControl = true;
+  languageObj: any;
+  selectedLanguage: any [];
   constructor(private ics: IntercomService, private http: HttpClientService, private route: Router, private msg: MessageService) {
     this.subscribe = ics.rpbean$.subscribe( x => { });
     // this.ics.sendBean(new RpBean());
     this.logo = this.ics.loginLogo;
+    this.init();
    }
+
+   selectlanguage(event) {
+    if (event.target.value === 'Myanmar') {
+      this.selectedLanguage = this.languageObj.Myanmar;
+      this.ics.setMyanmar();
+    } else {
+      this.selectedLanguage = this.languageObj.English;
+      this.ics.setEnglish();
+    }
+   }
+
+  init(): void{
+    this.http.doGet('assets/json/language.json').subscribe(
+      data => {
+        this.languageObj = data;
+        jQuery('#customRadio').prop( 'checked', true );
+        this.selectedLanguage = this.languageObj.Myanmar;
+        this.ics.setMyanmar();
+      }
+    );
+  }
 
    goPost() {
      this.route.navigate(['/menubar']);
@@ -61,16 +85,15 @@ export class LogInComponent implements OnInit, OnDestroy {
    getDefaultObj() {
      return {userId: '', phNo: ''};
    }
+
    onchangeEvent(event) {
 
     if (event.target.checked) {
       this.darkmode = true;
       this.ics.profile.darkMode = this.darkmode;
-      console.log(this.ics.profile.darkMode);
     } else {
       this.darkmode = false;
       this.ics.profile.darkMode = this.darkmode;
-      console.log(this.ics.profile.darkMode);
     }
    }
 
@@ -78,6 +101,11 @@ export class LogInComponent implements OnInit, OnDestroy {
     if (this.ics.profile.darkMode) {
       this.darkmode = true;
       jQuery('#switch1').prop( 'checked', true );
+    }
+    if(this.ics.isMyanmar){
+      this.selectedLanguage = this.languageObj.Myanmar;
+    }else{
+      this.selectedLanguage = this.languageObj.English;
     }
   }
 
