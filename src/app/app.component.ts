@@ -1,4 +1,4 @@
-import { Component, OnInit, enableProdMode, HostListener } from '@angular/core';
+import { Component, OnInit, enableProdMode, HostListener, OnDestroy } from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Router, RouterOutlet} from '@angular/router';
 import { IntercomService } from './Services/intercom.service';
@@ -18,7 +18,7 @@ enableProdMode();
     slideInAnimation,
   ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit,OnDestroy {
   mflag = true;
   customMessage = {flag: true, msg: 'Hello', type: 'Success'};
 
@@ -48,6 +48,10 @@ export class AppComponent implements OnInit {
       }
     );
     this.init();
+  }
+
+  ngOnDestroy(): void {
+    throw new Error("Method not implemented.");
   }
     // For animation Routing
     prepareRoute(outlet: RouterOutlet) {

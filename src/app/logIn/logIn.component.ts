@@ -3,10 +3,9 @@ import { Component, OnInit, OnDestroy, enableProdMode } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClientService} from '../Services/httpClient.service';
 import { IntercomService} from '../Services/intercom.service';
-import { timer, Subscription } from 'rxjs';
 import {trigger, state, style, animate, transition, keyframes} from '@angular/animations';
 import { slideInAnimation } from '../animation/animation';
-declare var jQuery: any;
+declare var $: any;
 enableProdMode();
 @Component({
   selector: 'app-login',
@@ -40,40 +39,49 @@ enableProdMode();
     ]),
   ],
 })
-export class LogInComponent implements OnInit, OnDestroy {
+export class LogInComponent implements OnInit {
 
   logo = '';
   darkmode = false;
-  $event: any;
-  subscribe: Subscription;
   obj: any = this.getDefaultObj();
-  fieldControl = true;
-  languageObj: any;
-  selectedLanguage: any [];
+  fieldControl = false;
+  _languageObj : any = {};
+  errorMsg: string;
+  selectedLanguage : string[];
   constructor(private ics: IntercomService, private http: HttpClientService, private route: Router, private msg: MessageService) {
-    this.subscribe = ics.rpbean$.subscribe( x => { });
-    // this.ics.sendBean(new RpBean());
-    this.logo = this.ics.loginLogo;
+    this.logo = this.ics.loginLogo; 
     this.init();
-   }
+  }
 
-   selectlanguage(event) {
+  selectlanguage(event) {
     if (event.target.value === 'Myanmar') {
-      this.selectedLanguage = this.languageObj.Myanmar;
+      this.selectedLanguage = this._languageObj.Myanmar;
       this.ics.setMyanmar();
     } else {
-      this.selectedLanguage = this.languageObj.English;
+      this.selectedLanguage = this._languageObj.English;
       this.ics.setEnglish();
     }
-   }
+  }
 
-  init(): void{
+   validate(event: any){
+    const value = event.target.value;
+    // /[A-Za-z0-9!@#\$%\^\&*\)\(+=._-]+$/g;
+    const pattern = /(?=.*[0-9]).{1,}(?=.*[a-z]).{1,}(?=.*[A-Z]).{1,}/;
+   // const key = String.fromCharCode(event.keyCode);
+    if(!value.match(pattern)){
+      this.errorMsg = "Password must be include at least 8,one uppercase and lowercase letter each";
+    }else{
+      this.errorMsg = "";
+    }
+  }
+
+  init(){
     this.http.doGet('assets/json/language.json').subscribe(
       data => {
-        this.languageObj = data;
-        jQuery('#customRadio').prop( 'checked', true );
-        this.selectedLanguage = this.languageObj.Myanmar;
-        this.ics.setMyanmar();
+        this._languageObj = data;
+        $('#customRadio').prop('checked', true );
+        this.selectedLanguage = this._languageObj.English;
+        this.ics.setEnglish();
       }
     );
   }
@@ -99,14 +107,8 @@ export class LogInComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.ics.profile.darkMode) {
-      this.darkmode = true;
-      jQuery('#switch1').prop( 'checked', true );
-    }
-    if(this.ics.isMyanmar){
-      this.selectedLanguage = this.languageObj.Myanmar;
-    }else{
-      this.selectedLanguage = this.languageObj.English;
-    }
+        this.darkmode = true;
+     }
   }
 
   showCustomMsg(msg, type) {
@@ -160,8 +162,5 @@ export class LogInComponent implements OnInit, OnDestroy {
     this.route.navigate(['/user']);
   }
 
-  ngOnDestroy() {
-    // this.subscribe.unsubscribe();
-  }
   // ng config -g cli.warnings.versionMismatch false
 }

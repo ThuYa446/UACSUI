@@ -5,7 +5,7 @@ import { LogInComponent } from './logIn/logIn.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/',
+    redirectTo: '/logIn',
     pathMatch: 'full',   // This is the Default Route When browser Start
   },
   {

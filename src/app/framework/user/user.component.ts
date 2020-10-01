@@ -58,7 +58,7 @@ export class UserComponent implements OnInit {
   calculateAge(){
     this.dateFmt = this.datepicker.changeStringToDate(this.date);
     this.age = this.datepicker.calulateAge(this.dateFmt);
-    this.router.navigate(['logIn']);
+    // this.router.navigate(['logIn']);
   }
 
 }

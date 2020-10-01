@@ -1,13 +1,13 @@
-<div class="container-fluid bg-white">
+<div class="container-fluid bg-white" *ngIf="selectedLanguage">
     <fieldset [class]="darkmode === false? 'mb-3 bgNormal':' mb-3 bg-secondary'">
-      <legend>{{selectedLanguage[7]}}</legend>
+      <legend style="font-size: medium;">{{selectedLanguage[7]}}</legend>
       <form class="form-group row">
         <!-- ္First Column Form-->
         <div class="col-md-6">
           <div class="row justify-content-center mb-2">
             <img [src]="image ? image: errorImage" class="mx-auto d-block" alt="Responsive image" width="150px" height="150px">
           </div>
-          <label for="username">{{selectedLanguage[8]}}</label>
+          <label for="username" [class]="darkmode? 'text-white': 'text-dark'">{{selectedLanguage[8]}}</label>
           <div class="input-group input-group-sm">
             <div class="input-group-prepend">
               <button class="btn btn-primary" type="button" disabled><i class="fa fa-folder-open" aria-hidden="true"></i></button>
@@ -20,26 +20,26 @@
                 <input id="inputfile" type="file" accept=".jpg,.png" (change)="fileChangeEvent($event,input)" style="display: none;" #input>
             </div>
           </div>
-          <label for="username">Username</label>
+          <label for="username" [class]="darkmode? 'text-white': 'text-dark'">{{selectedLanguage[10]}}</label>
           <div class="input-group input-group-sm">
             <div class="input-group-prepend">
               <button class="btn btn-primary" type="button" disabled><i class="fa fa-user" aria-hidden="true"></i></button>
             </div>
-            <input type="text" class="form-control" id="" placeholder="Username">
+            <input type="text" class="form-control" id="" placeholder={{selectedLanguage[11]}}>
           </div>
-          <label for="dob">Date of Birth:</label>
+          <label for="dob" [class]="darkmode? 'text-white': 'text-dark'">{{selectedLanguage[12]}}</label>
           <div class="input-group input-group-sm">
-            <input type="text" class="form-control" placeholder="dd-mm-yyyy" name="d2" #c2="ngModel" [(ngModel)]="date" click="calculateAge()" ngbDatepicker #d2="ngbDatepicker" [minDate]="{year: 1800, month: 1, day: 1}"
+            <input type="text" class="form-control" placeholder={{selectedLanguage[13]}} name="d2" #c2="ngModel" [(ngModel)]="date" click="calculateAge()" ngbDatepicker #d2="ngbDatepicker" [minDate]="{year: 1800, month: 1, day: 1}"
              [maxDate]="{year: 2300, month: 12, day: 31}" readonly >
             <div class="input-group-append">
               <button class="btn btn-primary fa fa-calendar" (click)="d2.toggle()" type="button" ></button>
             </div>
           </div>
-          <label for="dob">Age:</label>
+          <label for="dob" [class]="darkmode? 'text-white': 'text-dark'">{{selectedLanguage[14]}}</label>
           <div class="input-group input-group-sm">
-            <input type="text" class="form-control" id="" placeholder="Age" readonly [(ngModel)]="age" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="" placeholder={{selectedLanguage[14]}} readonly [(ngModel)]="age" [ngModelOptions]="{standalone: true}">
             <div class="input-group-append">
-              <button class="btn btn-primary" (click)="calculateAge()" type="button" >Calculate Age</button>
+              <button class="btn btn-primary" (click)="calculateAge()" type="button" >{{selectedLanguage[15]}}</button>
             </div>
           </div>
         </div>

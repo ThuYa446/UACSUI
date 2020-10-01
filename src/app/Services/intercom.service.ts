@@ -17,7 +17,7 @@ export class IntercomService {
   loginLogo = 'assets/images/logo.png';
   bgImage = 'assets/images/background.png';
   activeTimeout = 0;
-  languagemode = 0;
+  languagemode = 1;
   profile = {
     sessionID: '0',
     userid: '',
