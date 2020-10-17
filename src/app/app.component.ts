@@ -21,7 +21,6 @@ enableProdMode();
 export class AppComponent implements OnInit,OnDestroy {
   mflag = true;
   customMessage = {flag: true, msg: 'Hello', type: 'Success'};
-
   // tslint:disable-next-line: max-line-length
   constructor(private ics: IntercomService, private http: HttpClientService, private title: Title, private router: Router) {
     this.ics.rpbean$.subscribe(
@@ -87,6 +86,7 @@ export class AppComponent implements OnInit,OnDestroy {
         this.ics.welcomeText = data.welcomeText;
         this.ics.sessiontime = data.sessiontime;
         this.title.setTitle(data.title);
+        this.ics.setEnglish(); //default language when project load
       }
     );
   }

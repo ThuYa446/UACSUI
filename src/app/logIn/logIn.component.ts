@@ -66,7 +66,9 @@ export class LogInComponent implements OnInit {
    validate(event: any){
     const value = event.target.value;
     // /[A-Za-z0-9!@#\$%\^\&*\)\(+=._-]+$/g;
-    const pattern = /(?=.*[0-9]).{1,}(?=.*[a-z]).{1,}(?=.*[A-Z]).{1,}/;
+    // /((?=.+[0-9])(?=.+[a-z])(?=.+[A-Z])).{8,}/ The String must be at least 8,one uppercase and lowercase Letter each
+     // ;
+    const pattern = /((?=.+[0-9])(?=.+[a-z])(?=.+[A-Z])).{8,}/;
    // const key = String.fromCharCode(event.keyCode);
     if(!value.match(pattern)){
       this.errorMsg = "Password must be include at least 8,one uppercase and lowercase letter each";
@@ -79,9 +81,11 @@ export class LogInComponent implements OnInit {
     this.http.doGet('assets/json/language.json').subscribe(
       data => {
         this._languageObj = data;
-        $('#customRadio').prop('checked', true );
-        this.selectedLanguage = this._languageObj.English;
-        this.ics.setEnglish();
+        if(this.ics.isMyanmar()){
+          this.selectedLanguage = this._languageObj.Myanmar;
+        }else{
+          this.selectedLanguage = this._languageObj.English;
+        }
       }
     );
   }
