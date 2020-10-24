@@ -44,13 +44,25 @@ export class LogInComponent implements OnInit {
   logo = '';
   darkmode = false;
   obj: any = this.getDefaultObj();
-  fieldControl = false;
-  _languageObj : any = {};
   errorMsg: string;
+  
+  // Language variables
+  _languageObj : any = {};
   selectedLanguage : string[];
+  isMyanmar = false;isEnglish = false;
+
+  //Cookie Value
+  uname = "username";
+  pname = "password";
+  username = "";
+  password = "";
+  remembercheck = false;
+  url: string = "url";
+
   constructor(private ics: IntercomService, private http: HttpClientService, private route: Router, private msg: MessageService) {
     this.logo = this.ics.loginLogo; 
     this.init();
+    this.checkCookie();
   }
 
   selectlanguage(event) {
@@ -67,7 +79,6 @@ export class LogInComponent implements OnInit {
     const value = event.target.value;
     // /[A-Za-z0-9!@#\$%\^\&*\)\(+=._-]+$/g;
     // /((?=.+[0-9])(?=.+[a-z])(?=.+[A-Z])).{8,}/ The String must be at least 8,one uppercase and lowercase Letter each
-     // ;
     const pattern = /((?=.+[0-9])(?=.+[a-z])(?=.+[A-Z])).{8,}/;
    // const key = String.fromCharCode(event.keyCode);
     if(!value.match(pattern)){
@@ -83,8 +94,10 @@ export class LogInComponent implements OnInit {
         this._languageObj = data;
         if(this.ics.isMyanmar()){
           this.selectedLanguage = this._languageObj.Myanmar;
+          this.isMyanmar = true;
         }else{
           this.selectedLanguage = this._languageObj.English;
+          this.isEnglish = true;
         }
       }
     );
@@ -129,6 +142,67 @@ export class LogInComponent implements OnInit {
   showloading(type) {
     if (type === true) {this.ics.sendBean({t1: 'custom-loading'}); }
     if (type === false) {this.ics.sendBean({t1: 'custom-loading-off'}); }
+  }
+
+  setremember(uname,username,pname,password,event){
+    if(event.target.checked){
+      this.remembercheck = true;
+      if(username === "" && password === ""){
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "url=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+      }else{
+        let d = new Date();
+        d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toDateString();
+        document.cookie = uname + "=" + username + ";" + expires;
+        document.cookie = pname + "=" + password + ";" + expires;
+        document.cookie = this.url + "=" + this.ics.apiurl + ";" + expires;
+      }
+    }else{
+      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+      document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+      document.cookie = "url=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    }
+  }
+
+  checkCookie() {
+    let value = this.readCookieUsername('username');
+    let pass = this.readCookiePassword('password');
+    //let urls = this.readUrl('url');
+    if (value != "" && value != null && pass != "" && pass != null) {
+      this.username = value;
+      this.password = pass;
+      this.remembercheck = true;
+    } else {
+      this.username = "";
+      this.password = "";
+      this.remembercheck = false;
+    }
+  }
+
+  readCookieUsername(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ')
+        c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+
+    readCookiePassword(password) {
+    let nameEQ = password + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ')
+        c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
   }
 
   sayHello() {

@@ -10,30 +10,37 @@
               <form class="col-md-12">
                 <div class="input-group mb-3 mt-3 input-group-sm justify-content-center">
                   <div class="input-group-prepend">
-                    <button class="btn btn-primary" type="button" disabled><i class="fa fa-user" aria-hidden="true"></i></button>
+                    <span class="input-group-text bg-primary"><i class="fa fa-user text-white" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" class="form-control col-md-7" placeholder="{{selectedLanguage[1]}}" aria-label="" aria-describedby="basic-addon1" [(ngModel)]="obj.userId" [ngModelOptions]="{standalone:true}">
+                  <input type="text" class="form-control col-md-7" placeholder="{{selectedLanguage[1]}}" aria-label="" aria-describedby="basic-addon1" [(ngModel)]="username" [ngModelOptions]="{standalone:true}">
                 </div>
 
                 <div class="input-group mb-3 mt-3 input-group-sm justify-content-center">
                   <div class="input-group-prepend">
-                    <button class="btn btn-primary" type="button" disabled><i class="fa fa-lock" aria-hidden="true"></i></button>
+                    <span class="input-group-text bg-primary"><i class="fa fa-lock text-white" aria-hidden="true"></i></span>
                   </div>
-                  <input [type]="fieldControl? 'text': 'password'" class="form-control col-md-6" placeholder="{{selectedLanguage[2]}}"  [(ngModel)]="obj.phNo" (keyup.enter)=validate($event) [ngModelOptions]="{standalone:true}" >
+                  <input [type]="fieldControl? 'text': 'password'" class="form-control col-md-6" placeholder="{{selectedLanguage[2]}}"  [(ngModel)]="password" (keyup.enter)=validate($event) [ngModelOptions]="{standalone:true}" >
                   <div class="input-group-prepend">
                    <button class="btn btn-primary" (click)="fieldControl=!fieldControl"> <i class="fa" [class.fa-eye-slash]="!fieldControl"  [class.fa-eye]="fieldControl" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+
+                <div class="row mb-3 mt-3 justify-content-center form-group">
+                  <div class="form-check">
+                    <input type="checkbox" style="font-weight: bolder;" class="form-check-input" id="gridCheck" [(ngModel)]=remembercheck [ngModelOptions]="{standalone: true}" (click)=setremember(uname,username,pname,password,$event)>
+                    <label class="form-check-label" for="gridCheck"> {{selectedLanguage[16]}} </label>
                   </div>
                 </div>
 
                 <div class="row justify-content-center">
 
                   <div class="custom-control  custom-radio custom-control-inline col-md-auto col-auto">
-                    <input type="radio" class="custom-control-input" id="customRadio" name="example" value="Myanmar" (change)=selectlanguage($event)>
+                    <input type="radio" class="custom-control-input" id="customRadio" name="example" value="Myanmar" (change)=selectlanguage($event) [checked]="isMyanmar">
                     <label class="custom-control-label" for="customRadio">{{selectedLanguage[3]}}</label>
                   </div>
 
                   <div class="custom-control custom-radio custom-control-inline col-auto">
-                    <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="English" (change)=selectlanguage($event) [checked]="_languageObj.English">
+                    <input type="radio" class="custom-control-input" id="customRadio2" name="example" value="English" (change)=selectlanguage($event) [checked]="isEnglish">
                     <label class="custom-control-label" for="customRadio2">{{selectedLanguage[4]}}</label>
                   </div>
 
