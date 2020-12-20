@@ -7,11 +7,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
-import { MenubarComponent } from '../Framework/menubar.component';
-import { FrameworkRoutingModule } from '../Framework/framework-routing.module';
+import { MenubarComponent } from '../framework/menubar/menubar.component';
+import { FrameworkRoutingModule } from '../framework/framework-routing.module';
 
 import {IntercomService} from '../Services/intercom.service';
-import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -22,10 +21,9 @@ import { from } from 'rxjs';
      BrowserModule,
      BrowserAnimationsModule,
      RouterModule,
+     NgbModule,
      FrameworkRoutingModule,
      FormsModule,
-     NgbModule,
-
   ],
   exports: [
     MenubarComponent,
@@ -37,7 +35,7 @@ import { from } from 'rxjs';
     {provide: NgbDateParserFormatter, useClass: DatePickerService},
   ],
   bootstrap: [
-     MenubarComponent
+    UserComponent
   ]
 })
 export class FrameworkModule { }

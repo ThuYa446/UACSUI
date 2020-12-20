@@ -1,7 +1,7 @@
 import { UserComponent } from './user/user.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MenubarComponent} from '../Framework/menubar.component';
+import { MenubarComponent} from '../framework/menubar/menubar.component';
 
 
 const routes: Routes = [

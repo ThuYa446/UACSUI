@@ -1,18 +1,19 @@
 import { Component, OnInit, enableProdMode, HostListener } from '@angular/core';
 import { NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap';
 
-import { IntercomService } from '../Services/intercom.service';
+import { IntercomService } from '../../Services/intercom.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+
 enableProdMode();
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'menu-bar',
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.css']
 })
 
-export class MenubarComponent implements OnInit {
+
+export class MenubarComponent{
 
   dropdown: NgbDropdownToggle;
   collapsed = true;

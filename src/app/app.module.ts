@@ -6,8 +6,9 @@ import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 
+
 import { AppRoutingModule } from './app-routing.module';
-import {FrameworkModule} from './Framework/framework.module';
+import {FrameworkModule} from './framework/framework.module';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './logIn/logIn.component';
 import { HttpClientService} from './Services/httpClient.service';
@@ -19,6 +20,7 @@ import {IntercomService} from './Services/intercom.service';
       LogInComponent,
    ],
    imports: [
+      FrameworkModule,
       BrowserModule,
       BrowserAnimationsModule,
       RouterModule,
@@ -26,7 +28,6 @@ import {IntercomService} from './Services/intercom.service';
       NgbModule,
       FormsModule,
       HttpClientModule,
-      FrameworkModule,
    ],
    providers: [
      IntercomService,

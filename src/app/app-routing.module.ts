@@ -12,8 +12,7 @@ const routes: Routes = [
     path: 'logIn',
     component: LogInComponent,
     data: {animation: 'LogInAnimation'}
-  },
-
+  }
 ];
 
 @NgModule({

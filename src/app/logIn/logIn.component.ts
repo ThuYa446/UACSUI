@@ -58,6 +58,8 @@ export class LogInComponent implements OnInit {
   password = "";
   remembercheck = false;
   url: string = "url";
+  
+  fieldControl = false;
 
   constructor(private ics: IntercomService, private http: HttpClientService, private route: Router, private msg: MessageService) {
     this.logo = this.ics.loginLogo; 
@@ -237,8 +239,11 @@ export class LogInComponent implements OnInit {
     // );
     // }
     // );
-    this.route.navigate(['/user']);
+    this.route.navigate(['/menubar']);
   }
 
+  triggerVisibleField(){
+    this.fieldControl = !this.fieldControl;
+  }
   // ng config -g cli.warnings.versionMismatch false
 }

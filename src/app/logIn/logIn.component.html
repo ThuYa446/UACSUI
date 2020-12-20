@@ -21,7 +21,7 @@
                   </div>
                   <input [type]="fieldControl? 'text': 'password'" class="form-control col-md-6" placeholder="{{selectedLanguage[2]}}"  [(ngModel)]="password" (keyup.enter)=validate($event) [ngModelOptions]="{standalone:true}" >
                   <div class="input-group-prepend">
-                   <button class="btn btn-primary" (click)="fieldControl=!fieldControl"> <i class="fa" [class.fa-eye-slash]="!fieldControl"  [class.fa-eye]="fieldControl" aria-hidden="true"></i></button>
+                   <button class="btn btn-primary" (click)="triggerVisibleField()"> <i class="fa" [class.fa-eye-slash]="!fieldControl"  [class.fa-eye]="fieldControl" aria-hidden="true"></i></button>
                   </div>
                 </div>
 
